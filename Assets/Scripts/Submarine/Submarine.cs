@@ -2,10 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SubMovementt : MonoBehaviour
+public class Submarine : MonoBehaviour
 {
     private Rigidbody rgbd;
-    private float movementSpeed = 10;
+    private float movementSpeed = 0.4f;
+    
+    public Station steeringWheel;
+    public Exhaust exhaust;
     
 
 
@@ -13,12 +16,12 @@ public class SubMovementt : MonoBehaviour
     void Start()
     {
         rgbd = GetComponentInChildren<Rigidbody>();
+        rgbd.freezeRotation = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-
     }
 
     /// <summary>
@@ -34,11 +37,11 @@ public class SubMovementt : MonoBehaviour
     /// Rotates a player towards a controller defined direction
     /// </summary>
     /// <param name="direction"></param>
-    public void RotateSub(Vector3 direction)
-    {
-        Vector3 relativePos = direction - transform.localPosition;
-        //transform.localRotation = Quaternion.Lerp(transform.localRotation, Quaternion.LookRotation(relativePos), Time.deltaTime);
-        transform.localRotation = Quaternion.LookRotation(relativePos);
-    }
+    //public void RotateSub(Vector3 direction)
+    //{
+    //    Vector3 relativePos = direction - transform.localPosition;
+    //    //transform.localRotation = Quaternion.Lerp(transform.localRotation, Quaternion.LookRotation(relativePos), Time.deltaTime);
+     //   transform.localRotation = Quaternion.LookRotation(relativePos);
+    //}
 
 }

@@ -1,13 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PlayerController : MonoBehaviour
+public class Player : MonoBehaviour
 {
 
     public int PlayerNumber;
     private Rigidbody rgbd;
 
-    private bool isStatic = true;
+    private bool isStatic = false;
 
     [SerializeField]
     private float movementSpeed;
@@ -24,7 +24,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (Input.GetAxis("Horizontal" + PlayerNumber) != 0 || Input.GetAxis("Vertical" + PlayerNumber) != 0 && !isStatic)
+        if ((Input.GetAxis("Horizontal" + PlayerNumber) != 0 || Input.GetAxis("Vertical" + PlayerNumber) != 0) && !isStatic)
         {
             MovePlayer(new Vector3(Input.GetAxis("Horizontal" + PlayerNumber), 0, Input.GetAxis("Vertical" + PlayerNumber)));
         }
@@ -32,7 +32,7 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetAxis("HorizontalR" + PlayerNumber) != 0 || Input.GetAxis("VerticalR" + PlayerNumber) != 0 && !isStatic)
+        if ((Input.GetAxis("HorizontalR" + PlayerNumber) != 0 || Input.GetAxis("VerticalR" + PlayerNumber) != 0) && !isStatic)
         {
             RotatePlayer(new Vector3(Input.GetAxis("HorizontalR" + PlayerNumber), 0, Input.GetAxis("VerticalR" + PlayerNumber)));
         }
@@ -68,6 +68,20 @@ public class PlayerController : MonoBehaviour
         if(other.gameObject.GetComponent<InteractableObject>())
         {
             isCollidingWith = other.gameObject.GetComponent<InteractableObject>();
+        }
+    }
+
+    public void SetFreeze(bool shouldFreeze)
+    {
+        if (shouldFreeze)
+        {
+            rgbd.isKinematic = true;
+            isStatic = true;
+        }
+        else
+        {
+            rgbd.isKinematic = false;
+            isStatic = false;
         }
     }
 }
