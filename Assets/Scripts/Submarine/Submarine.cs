@@ -16,7 +16,6 @@ public class Submarine : MonoBehaviour
     void Start()
     {
         rgbd = GetComponentInChildren<Rigidbody>();
-        rgbd.freezeRotation = true;
     }
 
     // Update is called once per frame
@@ -32,16 +31,4 @@ public class Submarine : MonoBehaviour
     {
         rgbd.MovePosition(new Vector3(gameObject.transform.localPosition.x + direction.x * movementSpeed, 0, gameObject.transform.localPosition.z + direction.z * movementSpeed));
     }
-
-    /// <summary>
-    /// Rotates a player towards a controller defined direction
-    /// </summary>
-    /// <param name="direction"></param>
-    //public void RotateSub(Vector3 direction)
-    //{
-    //    Vector3 relativePos = direction - transform.localPosition;
-    //    //transform.localRotation = Quaternion.Lerp(transform.localRotation, Quaternion.LookRotation(relativePos), Time.deltaTime);
-     //   transform.localRotation = Quaternion.LookRotation(relativePos);
-    //}
-
 }

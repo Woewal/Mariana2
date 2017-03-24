@@ -19,6 +19,7 @@ public class Player : MonoBehaviour
     {
         
         rgbd = GetComponent<Rigidbody>();
+        LevelController.instance.players.Add(this);
     }
 
     // Update is called once per frame

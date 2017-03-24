@@ -6,6 +6,7 @@ public class LevelController : MonoBehaviour {
 
     public Submarine submarine;
     public static LevelController instance;
+    public List<Player> players = new List<Player>();
 
 	// Use this for initialization
 	void Awake () {
